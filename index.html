@@ -1,144 +1,92 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Train Scheduler</title>
+    <title>Train Schedule</title>
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
     />
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <style>
-      header {
-        background: rgb(19, 78, 19);
-        box-sizing: border-box;
-        color: white;
-        width: 80%;
-        margin: auto;
-        height: 180px;
-        text-align: center;
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-bottom: solid grey 3px;
-        border-left: solid grey 3px;
-        border-right: solid grey 3px;
-      }
-      body {
-        background-image: url("https://d2d00szk9na1qq.cloudfront.net/Product/8c8a442f-238a-4644-afc4-d46ef7778b5d/Images/Large_RFR-005.jpg");
-      }
-
-      .table {
-        width: 80% !important;
-        margin: auto !important;
-        border: solid black 1px;
-      }
-
-      h2 {
-        width: 80% !important;
-        margin: auto !important;
-        border: solid black 1px;
-      }
-
-      p {
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
-        color: yellow;
-      }
-      tbody {
-        text-align: center;
-      }
-
-      .form-group {
-        width: 80%;
-        margin: auto !important;
-        border: solid black 1px;
-        margin-top: 30px;
-        align-content: left !important;
-      }
-
-      label {
-        padding-left: 12px;
-      }
-
-      #label {
-        
-        display: flex;
-        height: 50px;
-        align-items: center;
-        padding: 20px;
-        padding-left: 12px;
-        align-items: center !important;
-      }
-
-      
-    </style>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Sigmar+One|Special+Elite"
+      rel="stylesheet"
+    />
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="assets/javascript/train.js" type="text/javascript"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <header>
-      <h1>
-        All Aboard!!<br />
-        A Comprehensive Directory of Train Schedules
-      </h1>
-    </header>
-    <table class="table">
-      <thead>
-        <p>Current Train Schedule</p>
-        <tr>
-          <th scope="col">Train Name</th>
-          <th scope="col">Destiny</th>
-          <th scope="col">Frequency (min)</th>
-          <th scope="col">Next Arrival</th>
-          <th scope="col">Minutes Away</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Trenton Express</td>
-          <td>Trenton</td>
-          <td>25</td>
-          <td>05:35pm</td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </table>
-    <br><br>
-    <form>
-        <container>
-        <div class="form-group">
-        <label for="exampleFormControlInput" id="label">Add Train</label>
+    <div class="container">
+      <div class="jumbotron text-center bg-success text-white">
+        <h1>All Aboard!<br>Schedule Your Next Bus Trip</h1>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Train Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          placeholder="Jane Doe"
-        />
+
+      <!-- "Current Train Schedule" Table -->
+
+      <div class="panel panel-success text-success">
+        <div class="panel-heading"><h3>Current Train Schedule</h3></div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Frequency(min)</th>
+                <th>Next Arrival</th>
+                <th>Minutes Away</th>
+              </tr>
+            </thead>
+
+            <!-- Train info goes here! -->
+            <tbody id="add-row"></tbody>
+          </table>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Destination</label>
-        <input type="text" class="form-control" id="destination" placeholder="CEO" />
+
+      <!-- Form for adding a new train -->
+
+      <div class="panel panel-success text-success">
+        <div class="panel-heading"><h3>Add Train</h3></div>
+
+        <div class="panel-body">
+          <form>
+            <div class="form-group">
+              <label for="text">Train Name</label>
+              <input type="text" class="form-control" id="train-name" />
+            </div>
+
+            <div class="form-group">
+              <label for="text">Destination</label>
+              <input type="text" class="form-control" id="destination" />
+            </div>
+
+            <div class="form-group">
+              <label for="text">First Train Time (HH:mm - Military Time)</label>
+              <input type="text" class="form-control" id="first-train" />
+            </div>
+
+            <div class="form-group">
+              <label for="text">Frequency(min)</label>
+              <input type="text" class="form-control" id="frequency" />
+            </div>
+
+            <button
+              type="submit"
+              id="add-train"
+              class="btn btn-success"
+              id="addTrain"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect2">First Train Time (HH:mm-military time)</label>
-        <input type="text" class="form-control" id="first train" />
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Frequency</label>
-        <input type="text" class="form-control" id="frequency" />
-      </div>
-      <button class="btn btn-default" id="button" type="button">Submit</button>
-    </form>
-</container>  
-</body>
+    </div>
+  </body>
 </html>
