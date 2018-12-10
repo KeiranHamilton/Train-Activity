@@ -89,22 +89,19 @@ h3 {
 .form-group {
   background: grey;
   color: white;
-  text-align: center;
 }
 
 .panel-heading {
   background: grey;
-  text-align: center;
 }
 
 .panel-success {
   background: grey;
   color: white;
-  text-align: center;
 }
 
 .btn {
-  background: red;
+  background: red !important;
   align-items: center;
   color: white;
 }

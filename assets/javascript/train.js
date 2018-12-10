@@ -34,7 +34,7 @@ $(document).ready(function() {
       .val()
       .trim();
 
-    // Pushing to database
+    // Push to database
     database.ref().push({
       name: name,
       destination: destination,
@@ -50,7 +50,7 @@ $(document).ready(function() {
     function(childSnapshot) {
       var nextArr;
       var minAway;
-      // Chang year so first train comes before now
+      // change so first train comes
       var firstTrainNew = moment(
         childSnapshot.val().firstTrain,
         "hh:mm"
