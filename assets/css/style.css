@@ -1,5 +1,5 @@
 h1 {
-  background: red;
+  background: orange;
   box-sizing: border-box;
   color: white;
   width: 80%;
@@ -15,7 +15,7 @@ h1 {
   border-right: solid grey 3px;
 }
 body {
-  background-image: url("https://d2d00szk9na1qq.cloudfront.net/Product/8c8a442f-238a-4644-afc4-d46ef7778b5d/Images/Large_RFR-005.jpg");
+  background-image: url("http://getwallpapers.com/wallpaper/full/7/d/d/87639.jpg");
 }
 
 .table {
@@ -23,7 +23,6 @@ body {
   margin: auto !important;
   border: solid black 1px;
 }
-
 h2 {
   width: 80% !important;
   margin: auto !important;
@@ -47,6 +46,7 @@ tbody {
   border: solid black 1px;
   margin-top: 30px;
   align-content: left !important;
+  opacity: 0.7;
 }
 
 label {
@@ -82,7 +82,7 @@ panel {
 }
 
 h3 {
-  color: grey;
+  color: black;
   text-align: center;
 }
 
@@ -98,6 +98,7 @@ h3 {
 .panel-success {
   background: grey;
   color: white;
+  opacity: 0.9;
 }
 
 .btn {
